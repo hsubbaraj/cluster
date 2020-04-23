@@ -38,8 +38,12 @@ spec:
       hostIPC: true
       containers:
       - name: function-1
-        image: hydroproject/cloudburst
+        image: hsubbaraj/cloudburst #same as hydroproject/cloudburst, but changed base image to work with ubuntu18
         imagePullPolicy: Always
+        resources:
+          limits:
+            memory: 1024Mi
+            nvidia.com/gpu: 1 # requesting 1 GPU
         env:
         - name: ROUTE_ADDR
           value: ROUTE_ADDR_DUMMY
@@ -59,8 +63,12 @@ spec:
         - mountPath: /requests
           name: ipc
       - name: function-2
-        image: hydroproject/cloudburst
+        image: hsubbaraj/cloudburst
         imagePullPolicy: Always
+        resources:
+          limits:
+            memory: 1024Mi
+            nvidia.com/gpu: 1 # requesting 1 GPU
         env:
         - name: ROUTE_ADDR
           value: ROUTE_ADDR_DUMMY
@@ -80,8 +88,12 @@ spec:
         - mountPath: /requests
           name: ipc
       - name: function-3
-        image: hydroproject/cloudburst
+        image: hsubbaraj/cloudburst
         imagePullPolicy: Always
+        resources:
+          limits:
+            memory: 1024Mi
+            nvidia.com/gpu: 1 # requesting 1 GPU
         env:
         - name: ROUTE_ADDR
           value: ROUTE_ADDR_DUMMY

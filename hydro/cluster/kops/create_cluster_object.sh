@@ -34,7 +34,7 @@ KOPS_STATE_STORE=$1
 SSH_KEY=$2
 
 echo "Creating cluster object..."
-kops create cluster --master-size c4.large --zones us-east-1a --ssh-public-key ${SSH_KEY}.pub ${HYDRO_CLUSTER_NAME} --networking kube-router > /dev/null 2>&1
+kops create cluster --master-size c4.large --zones us-east-1a --ssh-public-key ${SSH_KEY}.pub ${HYDRO_CLUSTER_NAME} --networking kube-router > /dev/null 2>&1 --image kope.io/k8s-1.15-debian-stretch-amd64-hvm-ebs-2020-01-17 --kubernetes-version 1.15.5
 # delete default instance group that we won't use
 kops delete ig nodes --name ${HYDRO_CLUSTER_NAME} --yes > /dev/null 2>&1
 
